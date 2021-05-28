@@ -1,18 +1,48 @@
-//
-// This is only a SKELETON file for the 'Allergies' exercise. It's been provided as a
-// convenience to get you started writing code faster.
-//
-
 export class Allergies {
-  constructor() {
-    throw new Error('Remove this statement and implement this function');
+  constructor(num) {
+    this.num = num;
+    this.allergies = {
+      eggs: 1,
+      peanuts: 2,
+      shellfish: 4,
+      strawberries: 8,
+      tomatoes: 16,
+      chocolate: 32,
+      pollen: 64,
+      cats: 128,
+    };
   }
 
   list() {
-    throw new Error('Remove this statement and implement this function');
+    const entries = Object.entries(this.allergies);
+    const list = [];
+    let num = this.num;
+    if (this.num > 256) {
+      num -= 256;
+    }
+    for (let i = entries.length - 1; i >= 0; i--) {
+      const [key, value] = entries[i];
+      if (num >= value) {
+        num -= value;
+        list.unshift(key);
+      }
+      if (num === 0) return list;
+    }
   }
 
-  allergicTo() {
-    throw new Error('Remove this statement and implement this function');
+  allergicTo(compared) {
+    const entries = Object.entries(this.allergies);
+    let num = this.num;
+    if (this.num > 256) {
+      num -= 256;
+    }
+    for (let i = entries.length - 1; i >= 0; i--) {
+      const [key, value] = entries[i];
+      if (num >= value) {
+        num -= value;
+        if (key === compared) return true;
+      }
+    }
+    return false;
   }
 }

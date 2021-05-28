@@ -1,36 +1,48 @@
-const ALLERGIES_CONTENT = {
-  'eggs': 1,
-  'peanuts': 2,
-  'shellfish': 4,
-  'strawberries': 8,
-  'tomatoes': 16,
-  'chocolate': 32,
-  'pollen': 64,
-  'cats': 128
-}
-
 export class Allergies {
-  constructor(allergies) {
-    this.allergies = allergies;
+  constructor(num) {
+    this.num = num;
+    this.allergies = {
+      eggs: 1,
+      peanuts: 2,
+      shellfish: 4,
+      strawberries: 8,
+      tomatoes: 16,
+      chocolate: 32,
+      pollen: 64,
+      cats: 128,
+    };
   }
 
   list() {
-    if(this.allergies >= 256){
-      this.allergies = this.allergies - 256;
+    const entries = Object.entries(this.allergies);
+    const list = [];
+    let num = this.num;
+    if (this.num > 256) {
+      num -= 256;
     }
-
-    let alergias = new Array;
-    Object.values(ALLERGIES_CONTENT).reverse().forEach( (allergiNum, item) => {
-      if (this.allergies >= allergiNum) {
-        this.allergies -= allergiNum;
-        alergias.push(Object.keys(ALLERGIES_CONTENT).reverse()[item])
+    for (let i = entries.length - 1; i >= 0; i--) {
+      const [key, value] = entries[i];
+      if (num >= value) {
+        num -= value;
+        list.unshift(key);
       }
-    });
-    return alergias.reverse()
+      if (num === 0) return list;
+    }
   }
 
-  allergicTo(sub) {
-    return this.list().join('').includes(sub)
+  allergicTo(compared) {
+    const entries = Object.entries(this.allergies);
+    let num = this.num;
+    if (this.num > 256) {
+      num -= 256;
+    }
+    for (let i = entries.length - 1; i >= 0; i--) {
+      const [key, value] = entries[i];
+      if (num >= value) {
+        num -= value;
+        if (key === compared) return true;
+      }
+    }
+    return false;
   }
-
 }
