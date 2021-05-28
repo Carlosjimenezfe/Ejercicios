@@ -1,5 +1,5 @@
 
 
 export const hello = () => {
-  return 'Hello, World!';
+  return 'Hola, Mundo!';
 };
