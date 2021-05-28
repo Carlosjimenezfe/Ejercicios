@@ -29,5 +29,5 @@ export const COLORS = [
   'blue',
   'violet',
   'grey',
-  'white',
+  'while',
 ];
