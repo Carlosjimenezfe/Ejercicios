@@ -11,7 +11,8 @@ export const colorCode = (color) => {
   if(color=='blue') return 6;
   if(color=='violet') return 7;
   if(color=='grey') return 8;
-  if(color=='white') return 9;
+  if(color=='white')return 9;
+
   
   
   return -1;
