@@ -1,6 +1,6 @@
 export const score = (word) => {
-  var score = 0;
-  for (var i = 0; i < word.length; i++) {
+  let score = 0;
+  for (let i = 0; i < word.length; i++) {
     if ('aeioulnrst'.indexOf(word[i].toLowerCase()) > - 1)
       score++;
     else if ('dg'.indexOf(word[i].toLowerCase()) > - 1)
